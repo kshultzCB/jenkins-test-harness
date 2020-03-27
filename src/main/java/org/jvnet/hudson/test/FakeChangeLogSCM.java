@@ -69,7 +69,7 @@ public class FakeChangeLogSCM extends NullSCM implements Serializable {
 
     @Override
     public void checkout(Run<?, ?> build, Launcher launcher, FilePath remoteDir, TaskListener listener, File changeLogFile, SCMRevisionState baseline) throws IOException, InterruptedException {
-        new FilePath(changeLogFile).touch(0);
+        new FilePath(changeLogFile).write("I have been changed", "UTF-8");
         build.addAction(new ChangelogAction(entries, changeLogFile.getName()));
         entries = new ArrayList<EntryImpl>();
     }
